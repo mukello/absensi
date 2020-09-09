@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', 'IndexController');
+Route::get('/attandance', function () {
+    return view('attandance.index');
+})->name('att.index');
 
 Auth::routes();
 

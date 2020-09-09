@@ -1,6 +1,6 @@
 <div id="footer-bar" class="footer-bar-5">
 	<a href="index-components.html">
-		<i data-feather="home" data-feather-line="1" data-feather-size="21" data-feather-color="red2-dark" data-feather-bg="red2-fade-light"></i>
+		<i data-feather="home" data-feather-line="1" data-feather-size="21" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-light"></i>
 		<span>Home</span>
 	</a>
 
@@ -10,7 +10,7 @@
 	</a>
 
 	<a href="index.html" style="margin-left: 9px;">
-		<i data-feather="file" data-feather-line="1" data-feather-size="21" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-light"></i>
+		<i data-feather="file" data-feather-line="1" data-feather-size="21" data-feather-color="red2-dark" data-feather-bg="red2-fade-light"></i>
 		<span>News</span>
 	</a>
 

@@ -11,9 +11,9 @@
 
 <div id="page">
 
-	@include('base.menu')
-
 	@yield('content')
+
+	@include('base.modal')
 	
 </div>
 @include('base.script')

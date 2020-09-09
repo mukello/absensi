@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('class_id');
             $table->string('registration_number')->unique()->nullable();
             $table->string('nis')->unique();
             $table->string('nisn')->unique()->nullable();
@@ -31,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->text('address')->nullable();
             $table->string('photo')->nullable();
             $table->string('flag')->nullable();
+
+            $table->string('tahun_ajaran', 20)->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

@@ -22,6 +22,7 @@ class CreateSysAttendancesTable extends Migration
             $table->string('ip_address');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }
