@@ -13,27 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    // return what you want
+});
 Route::resource('/', 'IndexController');
-Route::get('/attandance', function () {
-    return view('attandance.index');
-})->name('att.index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/home', 'HomeController', ['as' => 'home'])->middleware(['auth']);
+Route::resource('/attandance', 'SysAttendanceController', ['as' => 'attandance'])->middleware(['auth']);
+Route::resource('/settings', 'SettingController', ['as' => 'settings'])->middleware(['auth']);
 
-Auth::routes();
+Route::post('settings-profile/image', 'ProfileController@imageUpload')->name('profile.image');
+Route::post('settings-profile/show-image', 'ProfileController@showImage')->name('profile.show-image');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('settings-profile/ktp', 'ProfileController@ktpUpload')->name('profile.ktp');
+Route::post('settings-profile/show-ktp', 'ProfileController@showKTP')->name('profile.show-ktp');
 
-Auth::routes();
+Route::post('settings-profile/kk', 'ProfileController@kkUpload')->name('profile.kk');
+Route::post('settings-profile/show-kk', 'ProfileController@showKK')->name('profile.show-kk');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::resource('/profile', 'ProfileController', ['as' => 'profile'])->middleware(['auth']);
+Route::get('/change-password', 'ProfileController@changePassword')->name('profile.changePassword');
+Route::post('/action-change-password', 'ProfileController@actionPassword')->name('profile.actionPassword');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/check-password', 'ProfileController@checkPassword')->name('profile.checkPassword');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

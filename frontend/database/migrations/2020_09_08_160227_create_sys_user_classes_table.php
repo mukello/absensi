@@ -11,6 +11,7 @@ class CreateSysUserClassesTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('sys_user_classes', function (Blueprint $table) {

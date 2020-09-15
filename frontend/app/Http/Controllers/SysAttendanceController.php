@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\SysAttendance;
+use App\Models\SysAttendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SysAttendanceController extends Controller
 {
@@ -35,7 +36,42 @@ class SysAttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ip = \Request::ip();
+        // $ip = '180.244.232.198';
+        $getLocation = \Location::get($ip);
+
+        if($request->lat == "" || $request->long == ""){
+            
+            if($getLocation == false){
+                $position = "Unknown!";
+                $lat = "Unknown!";
+                $long = "Unknown!";
+            }else{
+                $position = $getLocation->cityName." - ".$getLocation->countryName;
+                $lat = $getLocation->latitude;
+                $long = $getLocation->longitude;
+            }
+
+        }else{
+            $position = "Unknown";
+            $lat = $request->lat;
+            $long = $request->long;
+        }
+
+        $data = [
+            'user_id'               => Auth::user()->id,
+            'check_in'              => NOW(),
+            'location'              => $position,
+            'ip_address'            => $ip,
+            'latitude'              => $lat,
+            'longitude'             => $long,
+            'notes'                 => $request->notes,
+            'created_by'            => Auth::user()->id,
+            'updated_by'            => Auth::user()->id
+        ];
+        
+        $model = SysAttendance::create($data);
+
     }
 
     /**

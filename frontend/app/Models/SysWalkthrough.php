@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SysParents extends Model
+class SysWalkthrough extends Model
 {
     //
 }
